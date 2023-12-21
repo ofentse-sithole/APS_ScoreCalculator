@@ -16,7 +16,8 @@
         surname = Console.ReadLine();
 
         Console.WriteLine("Hello, " + name + " " + surname + "!" + "\n"
-                            + "we are here to assist you calculate your total aps score which will help you know what you qualify for.");
+                            + "We are here to assist you calculate your total aps score which will help you know what you qualify for." +
+                            "\n" +"We also can assit you with subject which can help you navigate what you can study");
 
         
         //if statement for aps score calcultor for qualify check
@@ -45,18 +46,28 @@
     //This method assist user to calculate their APS score
     private static int APS_Calculator()
     {
-        int length = 6;
+        
         int total = 0;
 
-        for (int i = 0; i < length; i++)
+        for (int i = 0; i < 6; i++)
         {
             Console.WriteLine("Please enter your subject admission score point: " + i);
 
-            // Read user input as an integer
-            int score = Convert.ToInt32(Console.ReadLine());
+            // Read user input as a string
+            string input = Console.ReadLine();
 
-            // Add the entered score to the total
-            total += score;
+            // Try to parse the input to an integer
+            if (int.TryParse(input, out int score))
+            {
+                // Add the entered score to the total
+                total += score;
+            }
+            else
+            {
+                Console.WriteLine("Invalid input. Please enter a valid integer.");
+                // Decrement i to repeat the current iteration
+                i--;
+            }
         }
 
         return total;
@@ -66,7 +77,7 @@
     //This method assist user to add their subjects as well as give them a desire job on what to study after high school
     private static void Subject()
     {
-        string[] subject = new string[6];
+        string[] subject = new string[7];
 
         for (int i = 0; i < subject.Length; i++)
         {
